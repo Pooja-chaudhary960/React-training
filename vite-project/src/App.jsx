@@ -1,40 +1,87 @@
 import React from "react";
+//import Home from "./Home";
+import Card from "./components/Card.jsx"
 
 const App = () => {
-  const Student = [
+ /* const Student = [
     {
-      name:"Ram",
-      Phone:"9823567890",
-      Faculty:"IT",
+      name: "Ram",
+      Phone: "9823567890",
+      Faculty: "IT",
     },
-     {
-      name:"Hari",
-      Phone:"9823567823",
-      Faculty:"Management",
+    {
+      name: "Hari",
+      Phone: "9823567823",
+      Faculty: "Management",
     },
-     {
-      name:"Sita",
-      Phone:"9823567367",
-      Faculty:"IT",
+    {
+      name: "Sita",
+      Phone: "9823567367",
+      Faculty: "IT",
     },
-     {
-      name:"Rita",
-      Phone:"9823562346",
-      Faculty:"Management",
+    {
+      name: "Rita",
+      Phone: "9823562346",
+      Faculty: "Management",
     },
+  ];*/
+  
+
+ /* const Animal=[
+    {
+      name:"Whale",
+      type:"Fish",
+      lifespan:"5-10 years"
+    },
+    {
+      name:"Dolphin",
+      type:"Fish",
+      lifespan:"5-10 years"
+    },
+    {
+      name:"Tiger",
+      type:"Mammal",
+      lifespan:"10-20 years"
+    },
+    {
+      name:"Lion",
+      type:"Mammal",
+      lifespan:"10-15 years"
+    },
+    {
+      name:"Snake",
+      type:"Reptile",
+      lifespan:"5-10 years"
+    },
+    {
+      name:"Crocodile",
+      type:"Reptile",
+      lifespan:"10-20 years"
+    }
   ]
-   const studentData = Student.map(
-    (item) =>`Name=${item.name}, Phone=${item.Phone}, Faculty=${item.Faculty}`).join("\n")
 
-    const ITfaculty= Student.filter(Student=>Student.Faculty==="IT").map(
-    (item) =>`Name=${item.name}, Phone=${item.Phone}, Faculty=${item.Faculty}`).join("\n")
+  const filtType=Animal.filter((Animal)=>Animal.type==="Reptile")
+  const MamType=Animal.filter((Animal)=>Animal.type==="Mammal")
+  const FishType=Animal.filter((Animal)=>Animal.type==="Fish")
+  //  const studentData = Student.map(
+  //   (item) =>`Name=${item.name}, Phone=${item.Phone}, Faculty=${item.Faculty}`).join("\n")
 
-    
-    const MagtFaculty= Student.filter(Student=>Student.Faculty==="IT").map(
-    (item) =>`Name=${item.name}, Phone=${item.Phone}, Faculty=${item.Faculty}`).join("\n")
+  /*const ITfaculty = Student.filter((Student) => Student.Faculty === "IT")
+    .map(
+      (item) =>
+        `Name=${item.name}, Phone=${item.Phone}, Faculty=${item.Faculty}`,
+    )
+    .join("\n");
+
+  const MagtFaculty = Student.filter((Student) => Student.Faculty === "IT")
+    .map(
+      (item) =>
+        `Name=${item.name}, Phone=${item.Phone}, Faculty=${item.Faculty}`,
+    )
+    .join("\n");
 
   //const name="hari"
- /* let marks = Number(prompt("Enter Marks"));
+  /* let marks = Number(prompt("Enter Marks"));
   // let marks=90;
   let result = "";
 
@@ -55,26 +102,97 @@ const App = () => {
       <h2>{result}</h2>
     </div>
   );*/
-   return (
-    <div style={{ whiteSpace: "pre-line" }}>
+ /* return (
+    <div>
+      <Home />
       <h3>Student Data:</h3>
-     {studentData}
-     <div>
-      <h3>IT Student Data:</h3>
-      {
-        ITfaculty
-      }
-     </div>
+      {Student.map((item) => (
+        <Home Name={item.name} Phone={item.Phone} Faculty={item.Faculty} />
+      ))}
       <div>
-      <h3>Management Student Data:</h3>
-      {
-        MagtFaculty
-      }
-     </div>
+        <h3>IT Student Data:</h3>
+        {ITfaculty}
+      </div>
+      <div>
+        <h3>Management Student Data:</h3>
+        {MagtFaculty}
+      </div>
     </div>
-    
-  );
+  );*/
+  /*return(
+    <div>
+   <h1>Animal Data:</h1>
+   {
+    Animal.map((items)=>
+      <Home Name={items.name} Type={items.type} LifeSpan={items.lifespan}/>
+    )
+   }
+   <div>
+      <h1>Reptile Animal:</h1>
+      {
+        filtType.map((items)=>
+          <Home Name={items.name} Type={items.type} LifeSpan={items.lifespan} />
+        )
+      }
+   </div>
+   <div>
+      <h1 className="text-4xl">Mammal Animal:</h1>
+      {
+        MamType.map((items)=>
+          <Home Name={items.name} Type={items.type} LifeSpan={items.lifespan} />
+        )
+      }
+   </div>
+   <div>
+      <h1>Fish Type:</h1>
+      {
+        FishType.map((items)=>
+          <Home Name={items.name} Type={items.type} LifeSpan={items.lifespan} />
+        )
+      }
+   </div>
+   </div>
+   
+  
+  )*/
+  const studentData=[
+        {
+            name:"Krisha Joshi",
+            id:201,
+            faculty:"IT",
+            address:"Bhaktapur"
 
-};
+        },
+         {
+            name:"Jina Joshi",
+            id:202,
+            faculty:"IT",
+            address:"Lalitpur"
+        },
+          {
+            name:"Sarswati Chaudhary",
+            id:203,
+            faculty:"Management",
+            address:"Baneshwor"
+        },
+         {
+            name:"Pustika Chaudhary",
+            id:204,
+            faculty:"Management",
+            address:"Kirtipur"
+        },
+    ]
+
+ return(
+  <div>
+    <h1 className="text-3xl">Student Data:</h1>
+    {
+      studentData.map((items)=>
+      <Card Name={items.name} Id={items.id} Faculty={items.faculty} Address={items.address}/>
+      )
+    }
+  </div>
+ )
+}
 
 export default App;
