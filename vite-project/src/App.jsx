@@ -9,6 +9,7 @@ import Blogs from "./pages/Blog.jsx";
 import About from "./pages/About.jsx";
 import MainLayout from "./components/MainLayout.jsx";
 import UseStateHook from "./Hooks/UseStateHook.jsx";
+import UseeffectHook from "./Hooks/UseeffectHook.jsx";
 
 const App = () => {
  
@@ -23,9 +24,12 @@ const App = () => {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/events" element={<Events />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/useeffecthook" element={<UseeffectHook />} />
+          <Route path="/usestatehook" element={<UseStateHook />} />
+        
         </Route>
       </Routes>
-      <UseStateHook/>
+ 
       
     </>
   );

@@ -21,6 +21,7 @@ const UseStateHook = () => {
   const addData = ()=>{
    setCount((prev)=>prev+1)
    setCount((prev)=>prev+1)
+   
   }
   
   return (
