@@ -30,3 +30,5 @@ const [data, setData] = useState([])
 }
 
 export default About;
+
+//Axios is used to send HTTP requests from your application to a server or API, making it easier to fetch data or submit data without reloading the page.
