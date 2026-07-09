@@ -12,6 +12,8 @@ import UseStateHook from "./Hooks/UseStateHook.jsx";
 import UseeffectHook from "./Hooks/UseeffectHook.jsx";
 import Category from "./pages/Category.jsx";
 import DynamicRouting from "./pages/DynamicRouting.jsx";
+// import Product from "./components/product.jsx";
+import MealID from "./pages/MealID.jsx";
 
 const App = () => {
  
@@ -29,6 +31,7 @@ const App = () => {
           <Route path="/useeffecthook" element={<UseeffectHook />} />
           <Route path="/usestatehook" element={<UseStateHook />} />
           <Route path="/category/:categoryName" element={<Category />} />
+          <Route path="/id/:id" element={<MealID />} />
           <Route path="/area/:areaName" element={<DynamicRouting />} />
         
         

@@ -51,3 +51,7 @@ const DynamicRouting = () => {
 };
 
 export default DynamicRouting;
+
+
+//useParams() is a hook from the React Router library that retrieves dynamic values (parameters) from the URL.
+// In this code, it is used to get the value of areaName from the URL, which is then used to fetch data from an API based on that parameter.
