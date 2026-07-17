@@ -45,9 +45,9 @@ const Category = () => {
       >
         {data.map((item) => (
           <div
-            key={item.idMeal}
-              onClick={() => nav(`/id/${item.idMeal}`)}
-            key={item.idMeal}
+            key={item.categoryName}
+              onClick={() => nav(`/id/${item.categoryName}`)}
+            key={item.categoryName}
             className="w-72 bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
           >
             <img
