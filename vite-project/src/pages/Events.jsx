@@ -4,7 +4,7 @@ import axios from "axios";
 import MealCard from "../components/MealCard";
 
 const Events = () => {
-  const [data, setData] = useState([]);
+ const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const MealProduct = async () => {

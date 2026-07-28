@@ -1,7 +1,10 @@
 import { Field, Form, Formik } from "formik";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addData } from "../redux/blogSlice";
 
 const AfterSEE = () => {
+  const dispatch = useDispatch()
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-3">
       <Formik
@@ -24,7 +27,9 @@ const AfterSEE = () => {
 
           return errors;
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => 
+          dispatch(addData(values))
+         }
       >
         {({ values, errors }) => (
           <Form className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg space-y-5">
