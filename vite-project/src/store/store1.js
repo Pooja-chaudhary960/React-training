@@ -6,4 +6,4 @@ export const store1 = configureStore({
     reducer:{
         blog:blogSlice1.reducer
     }
-})
+})  
