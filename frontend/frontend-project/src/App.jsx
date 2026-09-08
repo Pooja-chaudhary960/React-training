@@ -1,5 +1,5 @@
 import "./App.css";
-import Form from "./components/Form";
+import UserForm from "./components/UsersForm.jsx";
 import axios from "axios";
 import { useEffect } from "react";
 import MainLayout from "./components/MainLayout";
@@ -30,10 +30,12 @@ const App = () => {
       <Route element={<MainLayout />}> 
         <Route path="/" element={<Home />} />
         <Route path="/user" element={<User />} />
-        <Route path="/form" element={<Form />} />
+        <Route path="/form" element={<UserForm />} />
         <Route path="/student" element={<Student />} />
         <Route path="/addStudent" element={<StudentForm />} />
         <Route path="/edit/:id" element={<StudentForm />} />
+        <Route path="/addUser" element={<UserForm />} />
+        <Route path="/editUser/:id" element={<UserForm />} />
       </Route>
     </Routes>
     </>

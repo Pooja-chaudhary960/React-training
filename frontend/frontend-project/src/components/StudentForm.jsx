@@ -46,7 +46,7 @@ const StudentForm = () => {
     }
   };
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async (values) => {
     console.log(values);
 
     try {
