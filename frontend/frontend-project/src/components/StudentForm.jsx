@@ -1,98 +1,139 @@
-import { useFormik } from "formik";
+import { Formik, Form, Field } from "formik";
 import axios from "axios";
-;
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const StudentForm = () => {
+  const [students, setStudents] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
+  const isEditMode = Boolean(id);
+  console.log(id);
 
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      address: "",
-      phone: "",
-      gender: "",
-      rollNo: "",
-      course: "",
-    },
-  });
+  const navigate = useNavigate();
+
+  const initialValues = {
+    name: "",
+    email: "",
+    address: "",
+    phone: "",
+    gender: "",
+    rollNo: "",
+    course: "",
+  };
+
+  useEffect(() => {
+    if (id) {
+      fetchStudentById(id);
+    }
+  }, [id]);
+
+  const fetchStudentById = async (id) => {
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        `http://localhost:3000/api/getStudent/${id}`,
+      );
+      console.log(response);
+
+      const studentData = response.data.student;
+      setStudents(studentData);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error occurred:", error);
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (values, { resetForm }) => {
+    console.log(values);
+
+    try {
+      if (id) {
+        await axios.put(`http://localhost:3000/api/updateStudent/${id}`, values);
+      } else {
+        await axios.post("http://localhost:3000/api/students", values);
+      }
+      navigate("/student");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to add student");
+    }
+  };
 
   return (
     <div className="max-w-xl mx-auto mt-10 p-6 shadow-lg rounded-lg">
-      <h1 className="text-2xl font-bold mb-6 text-center">Add Student</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center">
+        {isEditMode ? "Edit Student" : "Add Student"}
+      </h1>
 
-      <form onSubmit={formik.handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter Name"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          className="w-full border p-2 rounded"
-        />
+      <Formik
+        initialValues={students || initialValues}
+        enableReinitialize={true}
+        onSubmit={handleSubmit}
+      >
+        <Form className="space-y-4">
+          <Field
+            type="text"
+            name="name"
+            placeholder="Enter Name"
+            className="w-full border p-2 rounded"
+          />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter Email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          className="w-full border p-2 rounded"
-        />
+          <Field
+            type="email"
+            name="email"
+            placeholder="Enter Email"
+            className="w-full border p-2 rounded"
+          />
 
-        <input
-          type="text"
-          name="address"
-          placeholder="Enter Address"
-          value={formik.values.address}
-          onChange={formik.handleChange}
-          className="w-full border p-2 rounded"
-        />
+          <Field
+            type="text"
+            name="address"
+            placeholder="Enter Address"
+            className="w-full border p-2 rounded"
+          />
 
-        <input
-          type="text"
-          name="phone"
-          placeholder="Enter Phone"
-          value={formik.values.phone}
-          onChange={formik.handleChange}
-          className="w-full border p-2 rounded"
-        />
+          <Field
+            type="text"
+            name="phone"
+            placeholder="Enter Phone"
+            className="w-full border p-2 rounded"
+          />
 
-        <select
-          name="gender"
-          value={formik.values.gender}
-          onChange={formik.handleChange}
-          className="w-full border p-2 rounded"
-        >
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
+          <Field
+            as="select"
+            name="gender"
+            className="w-full border p-2 rounded"
+          >
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </Field>
 
-        <input
-          type="text"
-          name="rollNo"
-          placeholder="Enter Roll Number"
-          value={formik.values.rollNo}
-          onChange={formik.handleChange}
-          className="w-full border p-2 rounded"
-        />
+          <Field
+            type="text"
+            name="rollNo"
+            placeholder="Enter Roll Number"
+            className="w-full border p-2 rounded"
+          />
 
-        <input
-          type="text"
-          name="course"
-          placeholder="Enter Course"
-          value={formik.values.course}
-          onChange={formik.handleChange}
-          className="w-full border p-2 rounded"
-        />
+          <Field
+            type="text"
+            name="course"
+            placeholder="Enter Course"
+            className="w-full border p-2 rounded"
+          />
 
-        <button
-          type="submit"
-          className="w-full bg-green-500 hover:bg-green-600 text-white p-2 rounded"
-        >
-          Add Student
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="w-full bg-green-500 hover:bg-green-600 text-white p-2 rounded"
+          >
+            {isEditMode ? "Edit Student" : "Add Student"}
+          </button>
+        </Form>
+      </Formik>
     </div>
   );
 };
